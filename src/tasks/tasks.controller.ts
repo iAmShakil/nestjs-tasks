@@ -13,7 +13,8 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 import { PatchTaskDto } from './dto/patch-task.dto';
 import { FilterTaskDto } from './dto/task-filter.dto';
-import { Task } from './task.model';
+import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
+import { Task, TaskStatus } from './task.model';
 import { TasksService } from './tasks.service';
 
 @Controller('tasks')
@@ -46,10 +47,10 @@ export class TasksController {
   }
 
   @Patch('/:id/status')
-  patchTaskById(
+  patchTaskStatus(
     @Param('id') id: string,
-    @Body() patchTaskDto: PatchTaskDto,
+    @Body('status', TaskStatusValidationPipe) status: TaskStatus,
   ): Task {
-    return this.tasksService.patchTaskById(id, patchTaskDto.status);
+    return this.tasksService.patchTaskById(id, status);
   }
 }

@@ -11,7 +11,6 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { PatchTaskDto } from './dto/patch-task.dto';
 import { FilterTaskDto } from './dto/task-filter.dto';
 import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 import { Task, TaskStatus } from './task.model';
